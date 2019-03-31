@@ -1,5 +1,7 @@
-﻿param($sourceFileUrl="", $destinationFolder="",$dbsource="C;", $databaseName="")
+﻿param($user="demouser", $password="demo@pass123", $sourceFileUrl="https://openhackguides.blob.core.windows.net/no-sql-artifacts/published-app.zip", $destinationFolder="C:\inetpub\wwwroot",$dbsource="https://openhackguides.blob.core.windows.net/no-sql-artifacts/OpenHack.bak", $databaseName="OpenHack.bak")
 $ErrorActionPreference = 'SilentlyContinue'
+
+Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature
 
 if([string]::IsNullOrEmpty($sourceFileUrl) -eq $false -and [string]::IsNullOrEmpty($destinationFolder) -eq $false)
 {
@@ -27,44 +29,8 @@ Invoke-WebRequest "http://dl.google.com/chrome/install/375.126/chrome_installer.
 Start-Process -FilePath $Path\$Installer -Args "/silent /install" -Verb RunAs -Wait
 Remove-Item $Path\$Installer
 
-# Install VS Code
-$Path = $env:TEMP; 
-$Installer = "vscode.exe"
-Invoke-WebRequest "https://go.microsoft.com/fwlink/?Linkid=852157" -OutFile $Path\$Installer
-Start-Process -FilePath $Path\$Installer -Args "/verysilent /MERGETASKS=!runcode" -Verb RunAs -Wait
-Remove-Item $Path\$Installer
-
-# Install Azure CLI 2
-$Path = $env:TEMP; 
-$Installer = "cli_installer.msi"
-Write-Host "Downloading Azure CLI 2..." -ForegroundColor Green
-Invoke-WebRequest "https://aka.ms/InstallAzureCliWindows" -OutFile $Path\$Installer
-Write-Host "Installing Azure CLI from $Path\$Installer..." -ForegroundColor Green
-Start-Process -FilePath msiexec -Args "/i $Path\$Installer /quiet /qn /norestart" -Verb RunAs -Wait
-Remove-Item $Path\$Installer
-
-# Install VS Community 
-$Path = $env:TEMP; 
-$Installer = "vs_community.exe"
-Invoke-WebRequest "https://openhackguides.blob.core.windows.net/no-sql-artifacts/vs_community.exe" -OutFile $Path\$Installer
-Start-Process -FilePath msiexec -Args "/i $Path\$Installer --layout C:\VS2017 --lang en-US --add Microsoft.VisualStudio.Workload.NetWeb --add Microsoft.VisualStudio.Workload.ManagedDesktop --add Component.GitHub.VisualStudio --includeRecommended --quiet" -Verb RunAs -Wait
 
 
-# Install IIS and the Web App
-Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature
-
-$webAppUrl = ""
-$splitpath = $webAppUrl.Split("/")
-$fileName = $splitpath[$splitpath.Length-1]
-$destinationPath = "C:\Inetpub\wwwroot\ContosoJobs.zip"
-$destinationFolder = "C:\Inetpub\wwwroot"
-
-[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
-$WebClient = New-Object System.Net.WebClient
-$WebClient.DownloadFile($cloudShopUrl,$destinationPath)
-
-#(new-object -com shell.application).namespace($destinationFolder).CopyHere((new-object -com shell.application).namespace($destinationPath).Items(),16)
-Expand-Archive -LiteralPath $destinationPath -DestinationPath $destinationFolder -Force
 
 # Deploy the DB
 $logs    = "C:\Logs"
@@ -78,11 +44,10 @@ $script  = "C:\Script"
 [system.io.directory]::CreateDirectory($script)
 [system.io.directory]::CreateDirectory("C:\SQLDATA")
 
-$splitpath = $sqlConfigUrl.Split("/")
-$fileName = $splitpath[$splitpath.Length-1]
+
 $destinationPath = "$script\configure-sql.ps1"
 # Download config script
-(New-Object Net.WebClient).DownloadFile($sqlConfigUrl,$destinationPath);
+(New-Object Net.WebClient).DownloadFile("https://raw.githubusercontent.com/opsgility/oh-no-sql/master/configure-sql.ps1",$destinationPath);
 
 # Get the Adventure works database backup 
 $dbdestination = "C:\SQLDATA\$databaseName"

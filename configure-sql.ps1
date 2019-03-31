@@ -1,5 +1,5 @@
 param($password)
-$dbdestination = "C:\SQLDATA\Database.bak"
+$dbdestination = "C:\SQLDATA\OpenHack.bak"
 # Setup the data, backup and log directories as well as mixed mode authentication
 Import-Module "sqlps" -DisableNameChecking
 [System.Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.Smo")
@@ -18,12 +18,7 @@ $pwd = $password
 $pwd.Insert(0, "'")
 $pwd += "'"
 
-Invoke-Sqlcmd -ServerInstance Localhost -Database "master" -Query "ALTER LOGIN sa WITH PASSWORD = $pwd"
-
-$mdf = New-Object 'Microsoft.SqlServer.Management.Smo.RelocateFile, Microsoft.SqlServer.SmoExtended, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91' -ArgumentList "AdventureWorks2012", "C:\Data\AdventureWorks2012.mdf"
-$ldf = New-Object 'Microsoft.SqlServer.Management.Smo.RelocateFile, Microsoft.SqlServer.SmoExtended, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91' -ArgumentList "AdventureWorks2012_Log", "C:\Logs\AdventureWorks2012.ldf"
+Invoke-Sqlcmd -ServerInstance LABVM -Database "master" -Query "ALTER LOGIN sa WITH PASSWORD = $pwd"
 
 
-# Restore the database from the backup
-Restore-SqlDatabase -ServerInstance Localhost -Database AdventureWorks `
-			-BackupFile $dbdestination -RelocateFile @($mdf,$ldf)  
+Restore-SqlDatabase -ServerInstance LABVM -Database "OpenHack" -BackupFile "C:\SQLDATA\OpenHack.bak"

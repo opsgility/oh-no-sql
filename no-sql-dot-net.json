@@ -39,7 +39,7 @@
     "customScriptUriScriptFileName": "configure-vm.ps1",
     "customScriptUri": "https://raw.githubusercontent.com/opsgility/oh-no-sql/master/configure-vm.ps1",
     "imagePublisher": "MicrosoftSQLServer",
-    "imageOffer": "SQL2016SP1-WS2016",
+    "imageOffer": "SQL2017-WS2016",
     "imageSku": "SQLDEV",
     "OSDiskName": "labvmosdisk",
     "nicName": "labvmnic",
