@@ -1,4 +1,4 @@
-﻿param($sourceFileUrl="", $destinationFolder="",$dbsource="", $databaseName="")
+﻿param($sourceFileUrl="", $destinationFolder="",$dbsource="C;", $databaseName="")
 $ErrorActionPreference = 'SilentlyContinue'
 
 if([string]::IsNullOrEmpty($sourceFileUrl) -eq $false -and [string]::IsNullOrEmpty($destinationFolder) -eq $false)
@@ -42,6 +42,13 @@ Invoke-WebRequest "https://aka.ms/InstallAzureCliWindows" -OutFile $Path\$Instal
 Write-Host "Installing Azure CLI from $Path\$Installer..." -ForegroundColor Green
 Start-Process -FilePath msiexec -Args "/i $Path\$Installer /quiet /qn /norestart" -Verb RunAs -Wait
 Remove-Item $Path\$Installer
+
+# Install VS Community 
+$Path = $env:TEMP; 
+$Installer = "vs_community.exe"
+Invoke-WebRequest "https://openhackguides.blob.core.windows.net/no-sql-artifacts/vs_community.exe" -OutFile $Path\$Installer
+Start-Process -FilePath msiexec -Args "/i $Path\$Installer --layout C:\VS2017 --lang en-US --add Microsoft.VisualStudio.Workload.NetWeb --add Microsoft.VisualStudio.Workload.ManagedDesktop --add Component.GitHub.VisualStudio --includeRecommended --quiet" -Verb RunAs -Wait
+
 
 # Install IIS and the Web App
 Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature
