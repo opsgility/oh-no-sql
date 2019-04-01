@@ -1,5 +1,10 @@
-﻿param($user="demouser", $password="demo@pass123", $sourceFileUrl="https://openhackguides.blob.core.windows.net/no-sql-artifacts/published-app.zip", $destinationFolder="C:\inetpub\wwwroot",$dbsource="https://openhackguides.blob.core.windows.net/no-sql-artifacts/OpenHack.bak", $databaseName="OpenHack.bak")
+﻿param($user="", $password="")
 $ErrorActionPreference = 'SilentlyContinue'
+
+$sourceFileUrl="https://openhackguides.blob.core.windows.net/no-sql-artifacts/published-app.zip"
+$dbsource="https://openhackguides.blob.core.windows.net/no-sql-artifacts/OpenHack.bak"
+$destinationFolder="C:\inetpub\wwwroot"
+$databaseName="OpenHack.bak"
 
 Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature
 

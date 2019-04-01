@@ -16,23 +16,7 @@
       "metadata": {
         "description": "Password for the Virtual Machine."
       }
-    },
-    "studentFilesUrl": {
-      "type": "string",
-      "defaultValue": "https://openhackguides.blob.core.windows.net/no-sql-artifacts/published-app.zip"
-    },
-    "studentFilesDestination": {
-      "type": "string",
-      "defaultValue": "C:\\openhack-app"
-    },
-    "dbSource": {
-        "type": "string",
-        "defaultValue": "https://openhackguides.blob.core.windows.net/no-sql-artifacts/OpenHack.bak"
-      },
-    "databaseName": {
-        "type": "string",
-        "defaultValue": "OpenHack"
-    }    
+    }  
   },
   "variables": {
     "customScriptFolder": "./",
@@ -207,7 +191,7 @@
               "fileUris": [
                 "[variables('customScriptUri')]"
               ],
-              "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('customScriptFolder'), '/', variables('customScriptUriScriptFileName'), ' -sourceFileUrl ', parameters('studentFilesUrl'), ' -destinationFolder ', parameters('studentFilesDestination'), ' -dbSource ', parameters('dbSource'), ' -databaseName ', parameters('databaseName'))]"
+              "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('customScriptFolder'), '/', variables('customScriptUriScriptFileName'), ' -User ', parameters('adminUserName'), ' -Password ', parameters('adminPassword'))]"
             }
           }
         }
