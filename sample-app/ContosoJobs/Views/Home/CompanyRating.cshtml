@@ -1,0 +1,45 @@
+﻿@*@model DataAccess.Entities.CompanyRating
+
+    /* TODO Uncomment the view when you have the controller returning ratings */
+
+@{
+    ViewBag.Title = "CompanyRating";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="base-content rating-list-layout">
+    <div class="admin-details-layout">
+        <h1>Company Rating</h1>
+        <hr />
+        <h2> @Html.DisplayFor(model => model.CompanyName)</h2>            
+        @using (Html.BeginForm())
+        {
+            <div class="apply-button"><input type="submit" value="Add a review" formaction=@Url.Action("AddReview", new {ratingId = Model.Id, CompanyRating = Model.CompanyId })  /></div>
+        }
+        <div class="rating-container">
+            @foreach (var rating in Model.Ratings)
+            {
+                <div style="margin-bottom: 20px;">
+                    <div style="font-size: 18px; margin-bottom: 5px;">
+                        @for (int i = 1; i <= rating.NumberOfStars; i++)
+                        {
+                            <div class="fa fa-star checked"></div>
+                        }
+                        @for (int i = 1; i <= (5 - rating.NumberOfStars); i++)
+                        {
+                            <div class="fa fa-star"></div>
+                        }
+                        <div class="fa" style="font-family: inherit;"> @rating.Heading</div>
+                    </div>
+                    <div style="max-width: 80%; margin-bottom: 5px;">@rating.Body</div>
+                    <div>@rating.Date.ToString("dd MMM yyyy")</div>
+                </div>
+                <hr />
+            }
+
+        </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+
+</div>*@

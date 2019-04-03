@@ -1,0 +1,95 @@
+﻿@model ContosoJobs.Models.AdminViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var CompanyName = "";
+    foreach (var item in Model.JobPostings)
+    {
+        CompanyName = item.CompanyName;
+        if (!String.IsNullOrWhiteSpace(CompanyName))
+        {
+            break;
+        }
+    }
+}
+@using PagedList.Mvc;
+@using PagedList;
+<div class="base-content admin-details-layout">
+    <h2 style="margin-top: 30px; margin-bottom: 50px;">@CompanyName</h2>
+
+    <h4>
+        <span style="padding-right: 10px">Company Users</span>
+        @if (DataAccess.Utilities.Utils.IfUserInRole("Administrator"))
+        {
+            @Html.ActionLink("Add User", "Index", "AddCompanyUser")
+        }
+    </h4>
+
+    <table class="table" style="margin-bottom: 50px;">
+        <tr>
+            <th>User Name</th>
+            <th>User Role</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+        </tr>
+
+        @foreach (var item in Model.Users)
+        {
+            <tr>
+                <td>@item.UserName</td>
+                <td>@item.UserRole</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+
+    </table>
+
+
+    <h4>
+        <span style="padding-right: 10px"> Current Job Postings </span>
+
+        @if (DataAccess.Utilities.Utils.IfUserInRole("Administrator") || DataAccess.Utilities.Utils.IfUserInRole("JobPoster"))
+        {
+            @Html.ActionLink("Create New", "Index", "JobPost")
+        }
+    </h4>
+    <table class="table">
+        <tr>
+            <th>Job Title</th>
+            <th>City</th>
+            <th>State</th>
+            <th>No of Applicants</th>
+            <th>Date Created</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.JobPostings)
+        {
+            using (Html.BeginForm())
+            {
+                <tr>
+                    <td>@item.JobTitle</td>
+                    <td>@item.City</td>
+                    <td>@item.State</td>
+                    <td>@item.NumberOfApplicantants</td>
+                    <td>@item.JobCreationDate.ToString("dd MMM yyyy")</td>
+                    <td class="view-btn"> <input type="submit" value="View" formaction=@Url.Action("JobPostingDetails", new { jobPostingId = item.JobPostingId }) formmethod="post" /> </td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>
+
+<span style="margin-bottom: 20px;  opacity: .9; position: absolute; left: 6%; right: 6%; bottom: 20px;"> @Html.PagedListPager(Model.JobPostings, i => Url.Action("Index", "Admin", new { i }))</span>

@@ -1,0 +1,56 @@
+﻿@model IPagedList<DataAccess.Entities.JobPostingInfo>
+
+@{
+    ViewBag.Title = "Search By Company";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string company = "";
+    if (Model.Count > 0 && Model != null)
+    {
+        company = Model.First(c => c.CompanyName == c.CompanyName).CompanyName;
+    }
+}
+
+
+@using PagedList.Mvc;
+@using PagedList;
+
+<form asp-controller="ChangeTypes" asp-action="Search" method="get" class="base-content job-search-layout">
+    <input name="Search" placeholder="Search" id="Search" class="job-list-layout" />
+    <input name="CompanySearch" id="CompanySearch"value="@company"  />
+    <input type="submit" value="Submit" class="submit-layout" />
+    <a asp-action="Search"></a>
+</form>
+<table class="table base-content table-layout">
+    <tr>
+        <th></th>
+        <th>Company Name</th>
+        <th>Job Title</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Date Created</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm())
+        {
+
+            <tr>
+
+                <td></td>
+                <td>@item.CompanyName</td>
+                <td>@item.JobTitle</td>
+                <td>@item.City</td>
+                <td>@item.State</td>
+                <td>@item.JobCreationDate.ToString("dd MMM yyyy")</td>
+                <td></td>
+                <td class="view-btn"> <input type="submit" value="View" formaction=@Url.Action("JobDetails","Home", new {jobPostingId = item.JobPostingId }) formmethod="post" /></td>
+            </tr>
+        }
+    }
+
+</table>
+
+<span style="margin-bottom: 20px;  opacity: .9; position: absolute; left: 6%; right: 6%; bottom: 20px;"> @Html.PagedListPager(Model, i => Url.Action("Index", "SearchByCompany", new { i , @company }))</span>
+

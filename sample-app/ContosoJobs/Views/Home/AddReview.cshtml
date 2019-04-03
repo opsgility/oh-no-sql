@@ -1,0 +1,58 @@
+﻿@*@model DataAccess.Entities.CompanyRating
+        <!-- Uncomment this page when you have NoSql set up for Company Ratings -->
+    @{
+                    // TODO uncomment this whole page
+
+                    ViewBag.Title = "AddReview";
+                    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    <div class="base-content rating-list-layout">
+        <div class="admin-details-layout">
+            <h2>@Model.CompanyName</h2>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Rating</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Ratings.First().NumberOfStars, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Ratings.First().NumberOfStars, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Ratings.First().NumberOfStars, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Ratings.First().Heading, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Ratings.First().Heading, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Ratings.First().Heading, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Ratings.First().Body, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Ratings.First().Body, 10, 60, new { htmlAttribute = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Ratings.First().Body, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Add Review" formaction=@Url.Action("AddReview") formmethod="post" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>*@

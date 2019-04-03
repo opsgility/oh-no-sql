@@ -1,0 +1,51 @@
+﻿@model ContosoJobs.Models.JobPostingDetailViewModel
+
+@{
+    ViewBag.Title = "JobPostingDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="base-content application-details-layout">
+    <div class="job-details">
+        <h2>
+            @Model.Job.JobTitle
+        </h2>
+        <div>
+            @Model.Job.JobDescription
+        </div>
+        <div>
+            @Model.Job.JobCreationDate.ToString("dd MMM yyyy")
+        </div>
+    </div>
+
+        <table class="table base-content table-layout">
+            <tr>
+                <th></th>
+                <th>Applicant User Name</th>
+                <th>Applicant Email</th>
+
+                <th></th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.Applicants)
+            {
+                using (Html.BeginForm())
+                {
+
+            <tr>
+                <td></td>
+                <td>@item.UserName</td>
+                <td>@item.Email</td>
+                <td>@item.Status</td>
+                <td></td>
+                <td></td>
+                <td class="view-btn"> @*<input type="submit" value="View" formaction=@Url.Action("JobDetails", new {jobPostingId = item.Id }) formmethod="post" />*@</td>
+            </tr>
+                }
+            }
+
+        </table>
+
+
+
+</div>

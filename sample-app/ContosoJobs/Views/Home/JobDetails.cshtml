@@ -1,0 +1,65 @@
+﻿@model DataAccess.Entities.JobPostingInfo
+
+@{
+    ViewBag.Title = "JobDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>JobDetails</h2>
+
+<div class="base-content job-details-layout">
+
+    <div class="container-details">
+        <h1>  @Html.DisplayFor(model => model.JobTitle)</h1>
+        <hr />
+        <div class="details-left">
+            <h3>Job Description</h3>
+            <div class="job-description">
+                @Html.DisplayFor(model => model.JobDescription)
+            </div>
+            <span>Job Id:  @Html.DisplayFor(model => model.JobPostingId)</span><span class="left-space-20"> Posted on:  @Html.DisplayFor(model => model.JobCreationDate) </span>
+            @using (Html.BeginForm())
+            {
+            <div class="apply-button"><input type="submit" value="APPLY" formaction=@Url.Action("Apply", new {Apply = Model.JobPostingId }) formmethod="post" /></div>
+            }
+        </div>
+
+        <div class="details-right">
+
+            <img src="~/Content/Office-01-WF.png" />
+            <h3>@Html.DisplayFor(model => model.CompanyName)</h3>
+            <!-- TODO Uncomment the code once you have the model returning the data -->
+            <div>
+                @*Average rating is @Html.DisplayFor(model => model.AverageRating) stars
+                <a href="@Url.Action("CompanyRating", new { CompanyRating = Model.CompanyId})">
+
+                    @for (int i = 1; i <= Model.AverageRating; i++)
+                    {
+                        <div class="fa fa-star checked"></div>
+                    }
+                    @for (int i = 1; i <= (5 - Model.AverageRating); i++)
+                    {
+                        <div class="fa fa-star"></div>
+                    }
+                </a>*@
+            </div>
+            <hr />
+            <div>
+                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
+                cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi,
+                id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+                Nam libero tempore.
+            </div>
+            <div>@Html.DisplayFor(model => model.City)</div>
+            <div>@Html.DisplayFor(model => model.JobTitle)</div>
+            <span>Company Id: @Html.DisplayFor(model => model.CompanyId)</span>
+        </div>
+    </div>
+
+
+</div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
