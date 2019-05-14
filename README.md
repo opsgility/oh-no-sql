@@ -10,7 +10,11 @@ There are two sample applications you can choose to work with during the OpenHac
 
 The full sample application source code is available here for download and will be needed to complete the challenges. 
 
+```
 https://github.com/opsgility/oh-no-sql/tree/master/sample-app
+```
+
+To get the app to compile you will need to restore the Nuget packages. You can accomplish this by right clicking on the ContosoJobs project and clicking **Manage Nuget Packages**. From there, click the **Restore** button at the top right of the screen.
 
 **Pre-Requisites**
 
@@ -19,11 +23,20 @@ https://github.com/opsgility/oh-no-sql/tree/master/sample-app
 - Git Client
     - Download available: https://git-scm.com/downloads
 
+
+**Virtual Machine with Sample App Running and Database for Migration (ASP.NET)**
+
 The following will deploy a virtual machine to your Azure subscription that you can use as the start of the challenge and to see how the application works prior to modernization. 
+
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fopsgility%2Foh-no-sql%2Fmaster%2Fno-sql-dot-net.json" rel="nofollow">
     <img src="https://camo.githubusercontent.com/9285dd3998997a0835869065bb15e5d500475034/687474703a2f2f617a7572656465706c6f792e6e65742f6465706c6f79627574746f6e2e706e67" data-canonical-src="http://azuredeploy.net/deploybutton.png" style="max-width:100%;">
 </a>
+
+Credentials
+- Login: Demouser
+- Password: demo@pass123
+
 
 # Open Hack - NoSQL Starter App for Java
 
@@ -31,7 +44,9 @@ The following will deploy a virtual machine to your Azure subscription that you 
 
 The full sample application source code is available here for download and will be needed to complete the challenges. 
 
+```
 https://github.com/opsgility/oh-no-sql/tree/master/sample-app-java
+```
 
 **Pre-Requisites**
 
@@ -56,10 +71,14 @@ https://github.com/opsgility/oh-no-sql/tree/master/sample-app-java
     - Download available: https://git-scm.com/downloads
 
 
+**Virtual Machine with Sample App Running and Database for Migration (JAVA)**
+
 The following will deploy a virtual machine to your Azure subscription that you can use as the start of the challenge and to see how the application works prior to modernization. 
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fopsgility%2Foh-no-sql%2Fmaster%2Fno-sql-java.json" rel="nofollow">
     <img src="https://camo.githubusercontent.com/9285dd3998997a0835869065bb15e5d500475034/687474703a2f2f617a7572656465706c6f792e6e65742f6465706c6f79627574746f6e2e706e67" data-canonical-src="http://azuredeploy.net/deploybutton.png" style="max-width:100%;">
 </a>
 
-
+Credentials
+- Login: Demouser
+- Password: demo@pass123
