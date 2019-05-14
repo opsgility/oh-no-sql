@@ -2,15 +2,15 @@
 $ErrorActionPreference = 'SilentlyContinue'
 
 
-$sourceFileUrl="https://openhackguides.blob.core.windows.net/no-sql-artifacts/published-app-java.zip"
+#$sourceFileUrl="https://openhackguides.blob.core.windows.net/no-sql-artifacts/published-app-java.zip"
 $dbsource="https://openhackguides.blob.core.windows.net/no-sql-artifacts/OpenHack.bak"
-$destinationFolder="C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\ROOT"
+#$destinationFolder="C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\ROOT"
 $databaseName="OpenHack.bak"
 
 # Install JDK 1.8
 $jdkUrl = "https://openhackguides.blob.core.windows.net/no-sql-artifacts/jdk-8u211-windows-x64.exe"
 $jreUrl = "https://openhackguides.blob.core.windows.net/no-sql-artifacts/jre-8u211-windows-x64.exe"
-$tomcatUrl = "https://openhackguides.blob.core.windows.net/no-sql-artifacts/apache-tomcat-8.5.40.exe"
+#$tomcatUrl = "https://openhackguides.blob.core.windows.net/no-sql-artifacts/apache-tomcat-8.5.40.exe"
 
 $javaDownloadPath = "C:\JavaInstall"
 if((Test-Path $javaDownloadPath) -eq $false)
@@ -23,11 +23,11 @@ if((Test-Path $javaDownloadPath) -eq $false)
 
 $jdkInstall = Join-Path $javaDownloadPath "jdk-8u211-windows-x64.exe"
 $jreInstall = Join-Path $javaDownloadPath "jre-8u211-windows-x64.exe"
-$apacheInstall = Join-Path $javaDownloadPath "apache-tomcat-8.5.40.exe"
+#$apacheInstall = Join-Path $javaDownloadPath "apache-tomcat-8.5.40.exe"
 
 (New-Object Net.WebClient).DownloadFile($jdkUrl,$jdkInstall);
 (New-Object Net.WebClient).DownloadFile($jreUrl,$jreInstall);
-(New-Object Net.WebClient).DownloadFile($tomcatUrl,$apacheInstall);
+#(New-Object Net.WebClient).DownloadFile($tomcatUrl,$apacheInstall);
 
 
 & $jdkInstall /s
@@ -38,11 +38,12 @@ Start-Sleep -Seconds 300
 setx JAVA_HOME "C:\Program Files\Java\jdk1.8.0_211"
 
 
-& $apacheInstall /S
+#& $apacheInstall /S
 
-Start-Sleep -Seconds 90
+#Start-Sleep -Seconds 90
 
 # Clear the default files 
+<#
 Remove-Item –path $destinationFolder -Recurse -Force
 
 New-Item -Path $destinationFolder -ItemType directory
@@ -65,7 +66,8 @@ if([string]::IsNullOrEmpty($sourceFileUrl) -eq $false -and [string]::IsNullOrEmp
 }
 
 
-Net Start Tomcat8
+# Net Start Tomcat8
+#>
 
 Stop-Process -Name Explorer
 Write-Host "IE Enhanced Security Configuration (ESC) has been disabled." -ForegroundColor Green
