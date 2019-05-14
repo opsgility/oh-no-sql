@@ -21,7 +21,7 @@
   "variables": {
     "customScriptFolder": "./",
     "customScriptUriScriptFileName": "configure-vm.ps1",
-    "customScriptUri": "https://raw.githubusercontent.com/opsgility/oh-no-sql/master/configure-vm-java",
+    "customScriptUri": "https://raw.githubusercontent.com/opsgility/oh-no-sql/master/configure-vm-java.ps1",
     "imagePublisher": "MicrosoftSQLServer",
     "imageOffer": "SQL2017-WS2016",
     "imageSku": "SQLDEV",
