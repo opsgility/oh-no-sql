@@ -1,0 +1,283 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.nav {
+    color: white;
+}
+select#User_Role {
+        height: 20px;
+        width: 243px;
+        border-radius: 6px;
+    }
+.details-right {
+    position: absolute;
+    width: 30%;
+    height: 100%;
+    right: 0;
+    top: 100px;
+    bottom: 0;
+    background-color: #deeefc;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+.details-left {
+    position: absolute;
+    width: 70%;
+    height: 100%;
+    left: 0;
+    top: 100px;
+    bottom: 0;
+    background-color: lightgray;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.container-details{
+    padding: 10px;
+}
+.left-space-20 {
+    padding-left: 400px;
+}
+.job-description{
+    font-size: 18px;
+}
+.details-right img {
+    height: 150px;
+
+}
+.details-right span, .details-left span {
+    position: absolute;
+    bottom: 20px;
+}
+.apply-button {
+    position: absolute;
+    right: 60px;
+    bottom: 60px;
+}
+    .apply-button input {
+        height: 50px;
+        width: 100px;
+        background-color: #0a67d3;
+        color: white;
+    }
+.job-description{
+    position: relative;
+    max-width: 80%;
+}
+.view-btn input {
+    height: 25px;
+    width: 60px;
+    background-color: #0a67d3;
+    color: white;
+}
+.view-btn input:active {
+    height: 25px;
+    width: 60px;
+    background-color: #0525ae;
+    color: white;
+}
+.base-content {
+    width: 88%;
+    max-width: 88%;
+    background-color: #fff;
+    opacity: .9;
+    position: relative;
+    left: 6%;
+    right: 6%;
+    top: 40px;
+}
+@media (min-width: 768px) {
+}
+.job-details-layout {
+    height: 60%;
+    padding: 10px;
+}
+.admin-details-layout {
+    height: 75%;
+    padding: 10px;
+    top: 100px;
+}
+.application-details-layout {
+    position: absolute;
+    height: 75%;
+    padding: 10px;
+    top: 100px;
+}
+.job-search-layout {
+    top: 100px;
+}
+.job-list-layout {
+    width: 100%;
+    max-width: 100%;
+    background-color: #fff;
+    height: 50px;
+    padding-left: 5px;
+    font-size: 30px;
+    position: absolute;
+}
+.submit-layout {
+    position: absolute;
+    height: 50px;
+    font-size: 30px;
+    right: 0
+}
+.table-layout {
+    margin-bottom: 50px;
+    opacity: .9;
+    top: 170px;
+}
+.register-layout {
+    top: 100px;
+    height: 60%;
+    padding: 10px;
+    opacity: .9;
+}
+.footer-layout {
+    position: absolute;
+    left: 1px;
+    bottom: 10px;
+    height: 20px;
+        width: 88%;
+    max-width: 88%;
+    opacity: .9;
+    left: 6%;
+    right: 6%;
+}
+.job-details {
+    display: inline-block;
+    margin-left: 7%;
+    margin-top: 4%;
+    width: 82%;
+}
+
+td a:hover, td a, div a:hover, div a {
+    text-decoration: none;
+}
+.rating-container{
+   border: 1px solid lightgray;
+    overflow: auto;
+    height: 600px;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.rating-list-layout {
+    height: 90%;
+    padding: 10px;
+}
+
+.multiselect #Id {
+    font-size: 18px;
+    position: absolute;
+    right: 100px;
+    top: 100px;
+    width: 412px;
+}
+    .multiselect #Id option {
+        width: 400px;
+        padding: 6px;
+    }
+.memberMultiselect {
+    font-size: 12px;
+    position: absolute;
+    right: 100px;
+    bottom: 92px;
+}
+.click-to-add {
+    font-size: 12px;
+    position: absolute;
+    right: 116px;
+    bottom: 30px;
+
+}
+    .click-to-add input, #user-resume input {
+        background-color: cornflowerblue;
+        color: white;
+    }
+.click-to-add-delete {
+    font-size: 12px;
+    position: absolute;
+    right: 286px;
+    bottom: 30px;
+}
+.add-skills {
+    position: relative;
+    right: 0;
+    bottom: 10px;
+}
+#user-skills {
+    position: absolute;
+    left: 30px;
+    font-size: 18px;
+    top: 65px;
+    padding: 6px;
+    width: 300px;
+    height: 400px;
+    overflow: auto;
+}
+#user-resume {
+    position: absolute;
+    left: 430px;
+    font-size: 18px;
+    top: 65px;
+    padding: 6px;
+    width: 520px;
+    height: 455px;
+    overflow-y: auto;
+    overflow-x:hidden;
+
+}
+textarea .text-area, #MyResume_Content {
+    width: 490px;
+    max-width: 500px;
+}
+.update-resume {
+    position: absolute;
+    bottom: 0;
+    right: 30px;   
+}
+.plain-text-btn {
+	border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: white;
+    padding: 0;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: inherit;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    opacity: .5;
+}
+.plain-text-btn:hover {
+	opacity: 1;
+}
+.company-name {
+	padding-top: 0;
+    padding-bottom: 0;
+	opacity: 1;
+	color: cornflowerblue;
+}
+

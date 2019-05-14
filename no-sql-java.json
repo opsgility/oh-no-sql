@@ -20,7 +20,7 @@
   },
   "variables": {
     "customScriptFolder": "./",
-    "customScriptUriScriptFileName": "configure-vm.ps1",
+    "customScriptUriScriptFileName": "configure-vm-java.ps1",
     "customScriptUri": "https://raw.githubusercontent.com/opsgility/oh-no-sql/master/configure-vm-java.ps1",
     "imagePublisher": "MicrosoftSQLServer",
     "imageOffer": "SQL2017-WS2016",
@@ -72,6 +72,18 @@
         "publicIPAllocationMethod": "[variables('publicIPAddressType')]"
       }
     },
+    {
+        "apiVersion": "2016-03-30",
+        "type": "Microsoft.Network/publicIPAddresses",
+        "name": "[variables('LBpublicIPAddressName')]",
+        "location": "[resourceGroup().location]",
+        "tags": {
+          "displayName": "PublicIPAddress"
+        },
+        "properties": {
+          "publicIPAllocationMethod": "[variables('publicIPAddressType')]"
+        }
+      },
     {
       "apiVersion": "2016-03-30",
       "type": "Microsoft.Network/virtualNetworks",
@@ -128,7 +140,7 @@
               ],
               "loadBalancerInboundNatRules": [
                 {
-                  "id": "[concat(variables('lbID'),'/inboundNatRules/RDP')]"
+                  "id": "[concat(variables('lbID'),'/inboundNatRules/http8080')]"
                 }
               ]              
             }
@@ -217,7 +229,7 @@
         "apiVersion": "2015-06-15",
         "name": "[variables('loadBalancerName')]",
         "type": "Microsoft.Network/loadBalancers",
-        "location": "[parameters('location')]",
+        "location": "[resourceGroup().location]",
         "dependsOn": [
           "[concat('Microsoft.Network/publicIPAddresses/', variables('LBpublicIPAddressName'))]"
         ],
@@ -239,7 +251,7 @@
           ],
           "inboundNatRules": [
             {
-              "name": "RDP",
+              "name": "http8080",
               "properties": {
                 "frontendIPConfiguration": {
                   "id": "[variables('frontEndIPConfigID')]"
