@@ -14,11 +14,8 @@ $sqlesq.Alter()
 Restart-Service -Name "MSSQLSERVER" -Force
 # Re-enable the sa account and set a new password to enable login
 Invoke-Sqlcmd -ServerInstance Localhost -Database "master" -Query "ALTER LOGIN sa ENABLE" 
-$pwd = $password
-$pwd.Insert(0, "'")
-$pwd += "'"
 
-Invoke-Sqlcmd -ServerInstance LABVM -Database "master" -Query "ALTER LOGIN sa WITH PASSWORD = $pwd"
+Invoke-Sqlcmd -ServerInstance LABVM -Database "master" -Query "ALTER LOGIN sa WITH PASSWORD = '$password'"
 
 
 Restore-SqlDatabase -ServerInstance LABVM -Database "OpenHack" -BackupFile "C:\SQLDATA\OpenHack.bak"
