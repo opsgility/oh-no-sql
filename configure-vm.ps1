@@ -50,16 +50,13 @@ $script  = "C:\Script"
 [system.io.directory]::CreateDirectory("C:\SQLDATA")
 
 
-#$destinationPath = "$script\configure-sql.ps1"
-# Download config script
-#(New-Object Net.WebClient).DownloadFile("https://raw.githubusercontent.com/opsgility/oh-no-sql/master/configure-sql.ps1",$destinationPath);
 
 # Get the Adventure works database backup 
 $dbdestination = "C:\SQLDATA\$databaseName"
 Invoke-WebRequest $dbsource -OutFile $dbdestination
 
-$password =  ConvertTo-SecureString "$password" -AsPlainText -Force
-$credential = New-Object System.Management.Automation.PSCredential("$env:COMPUTERNAME\$user", $password)
+$secpassword =  ConvertTo-SecureString "$password" -AsPlainText -Force
+$credential = New-Object System.Management.Automation.PSCredential("$env:COMPUTERNAME\$user", $secpassword)
 
 
 $configureSQLBlock =
@@ -76,10 +73,14 @@ $configureSQLBlock =
     $sqlesq.Settings.BackupDirectory = $backups
     $sqlesq.Alter() 
 
+    # Restart the SQL Server service
+    Restart-Service -Name "MSSQLSERVER" -Force
+
     # Re-enable the sa account and set a new password to enable login
     Invoke-Sqlcmd -ServerInstance Localhost -Database "master" -Query "ALTER LOGIN sa ENABLE" 
 
-    Invoke-Sqlcmd -ServerInstance Localhost -Database "master" -Query "ALTER LOGIN sa WITH PASSWORD = '" + $args[0] + "'"
+    $command = "ALTER LOGIN sa WITH PASSWORD = '" + $args[0] + "'"
+    Invoke-Sqlcmd -ServerInstance Localhost -Database "master" -Query $command
 
 
     Restore-SqlDatabase -ServerInstance Localhost -Database "OpenHack" -BackupFile "C:\SQLDATA\OpenHack.bak"
