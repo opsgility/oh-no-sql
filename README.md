@@ -38,6 +38,15 @@ Credentials
 - Password: demo@pass123
 
 
+**Deploying to Azure Web Apps** 
+
+If you choose Azure Web Apps as your hosted solution. 
+
+- Create a new Azure Web App in the Azure Portal
+- Open the ContosoJobs.sln, update the web.config to point to the new SQL Database connection string. 
+- Right click on the project name and click Deploy. If prompted, login with your Azure credentials.
+
+
 # Open Hack - NoSQL Starter App for Java
 
 **Source Code Location** 
@@ -104,6 +113,7 @@ Credentials
 - Login: Demouser
 - Password: demo@pass123
 
+> Note: This deployment takes approximately 30 minutes.
 
 **Deploying to Azure Web Apps** 
 
@@ -122,6 +132,8 @@ Update pom.xml with the following:
 <appName>[Your Web App Name]</appName>
 <region>[Your Azure Region]</region>
 ```
+
+Update the sample-app-java/src/main/resources/application.properties to point to your new database connection string.
 
 Launch Terminal in VS Code
 
