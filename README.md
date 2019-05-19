@@ -104,3 +104,28 @@ Credentials
 - Login: Demouser
 - Password: demo@pass123
 
+
+**Deploying to Azure Web Apps** 
+
+If you choose Azure Web Apps as your hosted solution. 
+
+Create new Azure Web App
+- Linux
+- Java 8 -> Tomcat 8.5
+
+Open the **sample-app-java** in VS Code.
+
+Update pom.xml with the following:
+
+```xml
+<resourceGroup>[Youre Resource Group]</resourceGroup>
+<appName>[Your Web App Name]</appName>
+<region>[Your Azure Region]</region>
+```
+
+Launch Terminal in VS Code
+
+```
+mvn package 
+mvn azure-webapp:deploy
+```
