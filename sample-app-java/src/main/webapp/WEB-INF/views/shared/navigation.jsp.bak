@@ -16,15 +16,15 @@
 
               <security:authorize access="isAuthenticated()">
                        <security:authorize access="hasRole('ROLE_ADMINISTRATOR')">
-                            <li><a href="${pageContext.request.contextPath}/AddCompanyUser">Add User</a></li>
+                            <li><a href="${pageContext.request.contextPath}/member/addCompanyUser">Add User</a></li>
                        </security:authorize>
 
                        <security:authorize access="hasAnyRole('ROLE_ADMINISTRATOR','ROLE_JOBPOSTER')">
-                            <li><a href="${pageContext.request.contextPath}/PostJob">Post Jobs</a></li>
+                            <li><a href="#">Post Jobs</a></li>
                        </security:authorize>
 
                        <security:authorize access="hasAnyRole('ROLE_ADMINISTRATOR','ROLE_JOBPOSTER','ROLE_JOBVIEWER')">
-                             <li><a href="${pageContext.request.contextPath}/admin">View Job Postings</a></li>
+                             <li><a href="#">View Job Postings</a></li>
                         </security:authorize>
               </security:authorize>
               
@@ -41,7 +41,7 @@
                           
                            <security:authorize access="isAuthenticated()">
                              <security:authorize access="hasAnyRole('ROLE_ADMINISTRATOR','ROLE_JOBPOSTER','ROLE_JOBVIEWER')">
-						          <li><a href="${pageContext.request.contextPath}/admin"> <security:authentication property="principal.username" /> </a> </li>
+						          <li><a href="${pageContext.request.contextPath}/home"> <security:authentication property="principal.username" /> </a> </li>
 						      </security:authorize> 
 						      
 						      <security:authorize access="hasRole('ROLE_MEMBER')">

@@ -10,9 +10,9 @@
 		<version>2.1.4.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.opsgility.contosojobs</groupId>
+	<groupId>com.sample.contosojobs</groupId>
 	<artifactId>ContosoJobsApplication</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>war</packaging>
 
 	<name>ContosoJobsApplication</name>
@@ -115,6 +115,13 @@
 			<artifactId>ecj</artifactId>
 			<version>4.6.1</version>
 		</dependency>
+        <!-- https://mvnrepository.com/artifact/io.grpc/grpc-core -->
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-core</artifactId>
+            <version>1.14.0</version>
+        </dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
@@ -128,7 +135,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
 	<build>
 		<resources>
 			<resource>
@@ -151,33 +157,33 @@
 					<useDefaultDelimiters>false</useDefaultDelimiters>
 				</configuration>
 			</plugin>
-        <plugin>
-            <groupId>com.microsoft.azure</groupId>
-            <artifactId>azure-webapp-maven-plugin</artifactId>
-            <!-- check Maven Central for the latest version -->
-            <version>1.5.3</version>
-            <configuration>
-                <schemaVersion>v2</schemaVersion>
-                <resourceGroup>[YOUR RESOURCE GROUP]</resourceGroup>
-                <appName>[YOUR WEB APP]</appName>
-                <runtime>
-                    <os>linux</os>
-                    <javaVersion>jre8</javaVersion>
-                    <webContainer>tomcat 8.5</webContainer>
-                </runtime>
-                <deployment>
-                    <resources>
-                        <resource>
-                            <directory>${project.basedir}/target</directory>
-                            <includes>
-                                <include>*.war</include>
-                            </includes>
-                        </resource>
+            <plugin>
+                <groupId>com.microsoft.azure</groupId>
+                <artifactId>azure-webapp-maven-plugin</artifactId>
+                <!-- check Maven Central for the latest version -->
+                <version>1.5.3</version>
+                <configuration>
+                    <schemaVersion>v2</schemaVersion>
+                    <resourceGroup>[Replace with your Resource Group]</resourceGroup>
+                    <appName>[Replace with your Web App Name</appName>
+                    <region>[Replace with your Region]</region>
+                    <runtime>
+                        <os>linux</os>
+                        <javaVersion>jre8</javaVersion>
+                        <webContainer>tomcat 8.5</webContainer>
+                    </runtime>
+                    <deployment>
+                        <resources>
+                            <resource>
+                                <directory>${project.basedir}/target</directory>
+                                <includes>
+                                    <include>*.war</include>
+                                </includes>
+                            </resource>
                     </resources>
-                </deployment>
-            </configuration>
-        </plugin>
-
+                    </deployment>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 	<repositories>
@@ -191,6 +197,10 @@
             <name>Spring Milestone Repository</name>
             <url>https://repo.spring.io/milestone</url>
         </repository>
-	</repositories>
- 
+        <repository>
+            <id>grpc-core</id>
+            <name>grpc repository</name>
+            <url>https://mvnrepository.com/artifact/io.grpc/grpc-core</url>
+        </repository>
+	</repositories> 
 </project>

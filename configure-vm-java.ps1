@@ -19,15 +19,13 @@ if((Test-Path $javaDownloadPath) -eq $false)
 }
 
 
-
-
 $jdkInstall = Join-Path $javaDownloadPath "jdk-8u211-windows-x64.exe"
 $jreInstall = Join-Path $javaDownloadPath "jre-8u211-windows-x64.exe"
-#$apacheInstall = Join-Path $javaDownloadPath "apache-tomcat-8.5.40.exe"
+$apacheInstall = Join-Path $javaDownloadPath "apache-tomcat-8.5.40.exe"
 
 (New-Object Net.WebClient).DownloadFile($jdkUrl,$jdkInstall);
 (New-Object Net.WebClient).DownloadFile($jreUrl,$jreInstall);
-#(New-Object Net.WebClient).DownloadFile($tomcatUrl,$apacheInstall);
+(New-Object Net.WebClient).DownloadFile($tomcatUrl,$apacheInstall);
 
 
 & $jdkInstall /s
@@ -38,12 +36,9 @@ Start-Sleep -Seconds 300
 setx JAVA_HOME "C:\Program Files\Java\jdk1.8.0_211"
 
 
-#& $apacheInstall /S
-
-#Start-Sleep -Seconds 90
+& $apacheInstall /S
 
 # Clear the default files 
-<#
 Remove-Item –path $destinationFolder -Recurse -Force
 
 New-Item -Path $destinationFolder -ItemType directory
@@ -66,8 +61,7 @@ if([string]::IsNullOrEmpty($sourceFileUrl) -eq $false -and [string]::IsNullOrEmp
 }
 
 
-# Net Start Tomcat8
-#>
+Net Start Tomcat8
 
 Stop-Process -Name Explorer
 Write-Host "IE Enhanced Security Configuration (ESC) has been disabled." -ForegroundColor Green

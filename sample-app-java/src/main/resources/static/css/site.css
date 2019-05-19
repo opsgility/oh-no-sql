@@ -280,4 +280,30 @@ textarea .text-area, #MyResume_Content {
 	opacity: 1;
 	color: cornflowerblue;
 }
+.admin-postings-container {
+    max-height: 45%;
+    overflow: auto;
+}
 
+.admin-users-container {
+    min-height: 0;
+    max-height: 20%;
+    overflow: auto;
+}
+@media  screen and (max-height: 770px){
+    .admin-postings-container {
+        max-height: 40%;
+    }
+
+    .admin-users-container {
+        max-height: 20%;
+    }
+    .pagination-container {
+        height: 20px;
+       margin-bottom: 5x;
+    }
+    .pagination {
+        margin-top: 3px;
+        margin-bottom: 5px;
+    }
+}

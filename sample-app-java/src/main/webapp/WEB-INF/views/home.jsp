@@ -15,7 +15,7 @@
             <th>City</th>
             <th>State</th>
             <th>Date Created</th>
-            <th>${message}</th>
+            <th></th>
         </tr>
 
               <c:forEach items="${jobsPageList.pageList}" var="job">   
@@ -27,8 +27,12 @@
                       	<input type="submit"  value="${job.companyName}" class="plain-text-btn company-name"/>
                       </form:form>
                      <td>
-                        <a href="#"> <!-- @Url.Action("CompanyRating", new { CompanyRating = item.CompanyId}) -->
+                        <a href="${pageContext.request.contextPath}/CompanyRatings?getId=${job.companyID}"> <!-- @Url.Action("CompanyRating", new { CompanyRating = item.CompanyId}) -->
                             <div>
+                            
+<!-- *************** See Company Rating jsp for binding hints replace with values from NoSql ******************  -->
+                            
+                            
                                   <c:forEach var = "i" begin = "1" end = "3"> <!-- job.AverageRating -->
 								         <div class="fa fa-star checked"></div>
 								  </c:forEach>
@@ -52,6 +56,7 @@
                         <input name="jobId" type="hidden" value="${job.jobPostingID}"/>
                       	<input type="submit"  value="view">
                       	</form:form>
+                      	</td>
                     </tr>
                 </c:forEach>
     </table>
