@@ -2,15 +2,15 @@
 $ErrorActionPreference = 'SilentlyContinue'
 
 
-#$sourceFileUrl="https://openhackguides.blob.core.windows.net/no-sql-artifacts/published-app-java.zip"
+$sourceFileUrl="https://openhackguides.blob.core.windows.net/no-sql-artifacts/published-app-java.zip"
 $dbsource="https://openhackguides.blob.core.windows.net/no-sql-artifacts/OpenHack.bak"
-#$destinationFolder="C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\ROOT"
+$destinationFolder="C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\ROOT"
 $databaseName="OpenHack.bak"
 
 # Install JDK 1.8
 $jdkUrl = "https://openhackguides.blob.core.windows.net/no-sql-artifacts/jdk-8u211-windows-x64.exe"
 $jreUrl = "https://openhackguides.blob.core.windows.net/no-sql-artifacts/jre-8u211-windows-x64.exe"
-#$tomcatUrl = "https://openhackguides.blob.core.windows.net/no-sql-artifacts/apache-tomcat-8.5.40.exe"
+$tomcatUrl = "https://openhackguides.blob.core.windows.net/no-sql-artifacts/apache-tomcat-8.5.40.exe"
 
 $javaDownloadPath = "C:\JavaInstall"
 if((Test-Path $javaDownloadPath) -eq $false)
