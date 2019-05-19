@@ -79,7 +79,9 @@ $configureSQLBlock =
     # Re-enable the sa account and set a new password to enable login
     Invoke-Sqlcmd -ServerInstance Localhost -Database "master" -Query "ALTER LOGIN sa ENABLE" 
 
-    $command = "ALTER LOGIN sa WITH PASSWORD = '" + $args[0] + "'"
+    #$command = "ALTER LOGIN sa WITH PASSWORD = '" + $args[0] + "'"
+    $command = "ALTER LOGIN sa WITH PASSWORD = 'demo@pass123'"
+
     Invoke-Sqlcmd -ServerInstance Localhost -Database "master" -Query $command
 
 
