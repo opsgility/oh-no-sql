@@ -10,12 +10,13 @@ $sqlesq.Settings.DefaultLog = $logs
 $sqlesq.Settings.BackupDirectory = $backups
 $sqlesq.Alter() 
 
-# Restart the SQL Server service
-Restart-Service -Name "MSSQLSERVER" -Force
 # Re-enable the sa account and set a new password to enable login
 Invoke-Sqlcmd -ServerInstance Localhost -Database "master" -Query "ALTER LOGIN sa ENABLE" 
 
-Invoke-Sqlcmd -ServerInstance LABVM -Database "master" -Query "ALTER LOGIN sa WITH PASSWORD = '$password'"
+Invoke-Sqlcmd -ServerInstance Localhost -Database "master" -Query "ALTER LOGIN sa WITH PASSWORD = '$password'"
 
 
-Restore-SqlDatabase -ServerInstance LABVM -Database "OpenHack" -BackupFile "C:\SQLDATA\OpenHack.bak"
+Restore-SqlDatabase -ServerInstance Localhost -Database "OpenHack" -BackupFile "C:\SQLDATA\OpenHack.bak"
+
+# Restart the SQL Server service
+Restart-Service -Name "MSSQLSERVER" -Force
