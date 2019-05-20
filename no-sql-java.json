@@ -2,23 +2,10 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "adminUsername": {
-      "type": "string",
-      "minLength": 1,
-      "defaultValue": "demouser",
-      "metadata": {
-        "description": "Username for the Virtual Machine."
-      }
-    },
-    "adminPassword": {
-      "type": "securestring",
-      "defaultValue": "demo@pass123",
-      "metadata": {
-        "description": "Password for the Virtual Machine."
-      }
-    }  
   },
   "variables": {
+    "adminUsername":"demouser",
+    "adminPassword":"demo@pass123",
     "customScriptFolder": "./",
     "customScriptUriScriptFileName": "configure-vm-java.ps1",
     "customScriptUri": "https://raw.githubusercontent.com/opsgility/oh-no-sql/master/configure-vm-java.ps1",
@@ -166,8 +153,8 @@
         },
         "osProfile": {
           "computerName": "[variables('vmName')]",
-          "adminUsername": "[parameters('adminUsername')]",
-          "adminPassword": "[parameters('adminPassword')]"
+          "adminUsername": "[variables('adminUsername')]",
+          "adminPassword": "[variables('adminPassword')]"
         },
         "storageProfile": {
           "imageReference": {
@@ -219,7 +206,7 @@
               "fileUris": [
                 "[variables('customScriptUri')]"
               ],
-              "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('customScriptFolder'), '/', variables('customScriptUriScriptFileName'), ' -User ', parameters('adminUserName'), ' -Password ', parameters('adminPassword'))]"
+              "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('customScriptFolder'), '/', variables('customScriptUriScriptFileName'), ' -User ', variables('adminUserName'), ' -Password ', variables('adminPassword'))]"
             }
           }
         }
