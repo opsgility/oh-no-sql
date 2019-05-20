@@ -20,6 +20,12 @@ To get the app to compile you will need to restore the Nuget packages. You can a
 
 - Visual Studio 2017+ 
     - Community/Free download is available here: https://visualstudio.microsoft.com/downloads/
+    - .NET Framework 4.71
+    
+    ```
+    https://www.microsoft.com/en-us/download/details.aspx?id=56116
+    ```
+
 - Git Client
     - Download available: https://git-scm.com/downloads
 
