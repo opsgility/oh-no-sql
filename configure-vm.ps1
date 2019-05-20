@@ -61,6 +61,8 @@ Invoke-WebRequest $dbsource -OutFile $dbdestination
 $secpassword =  ConvertTo-SecureString "$password" -AsPlainText -Force
 $credential = New-Object System.Management.Automation.PSCredential("$env:COMPUTERNAME\$user", $secpassword)
 
+Start-Sleep -Seconds 60
+
 Enable-PSRemoting -Force
 Set-NetFirewallRule -Name "WINRM-HTTP-In-TCP-PUBLIC" -RemoteAddress Any
 Invoke-Command -FilePath $destinationPath -Credential $credential -ComputerName $env:COMPUTERNAME -ArgumentList $password
